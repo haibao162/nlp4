@@ -6,7 +6,7 @@ from langchain_community.document_loaders import DirectoryLoader
 # sk-Vi9p22Kog6NZz6zNFzAxO3kngbVm3WEpycPR2UtY7NNpAx9S
 
 # 1. 加载文档数据
-loader = DirectoryLoader("./doc", glob="**/*.txt")
+loader = DirectoryLoader("./doc", glob="**/*.txt", show_progress=True)
 documents = loader.load()
 # print(documents[0], 'documents')
 # page_content='1212' metadata={'source': 'doc/vec.txt'}
