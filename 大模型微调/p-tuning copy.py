@@ -7,7 +7,7 @@
 # })
 
 import torch
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -33,6 +33,15 @@ dataset = load_dataset("json", data_files="data.json", split="train")
 result = dataset.map(lambda x: {"text": f"{x['instruction']}\n{x['output']}"})
 for i in result:
     print(i, 'result')
+
+dataset = Dataset.from_dict({
+    "instruction": ["解释量子计算", "翻译成英文"],
+    "input": ["", "今天天气真好"],
+    "output": ["量子计算是利用...", "The weather is nice today."]
+})
+
+for i in dataset:
+    print(i, 'redatasetdatasetsult')
 
 
 # 8. 数据预处理
