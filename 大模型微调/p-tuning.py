@@ -13,10 +13,11 @@ from transformers import (
     AutoTokenizer,
     BitsAndBytesConfig,
     TrainingArguments,
-    Trainer
+    Trainer,
 )
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 import os
+from trl import SFTTrainer
 
 # 设置设备（GPU/CPU）
 # device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -40,6 +41,7 @@ model = AutoModelForCausalLM.from_pretrained(
     model_path,
     # quantization_config=bnb_config,  # 如果显存不足，启用量化
     device_map="auto",              # 自动分配GPU/CPU
+    torch_dtype=torch.float16,
     trust_remote_code=True
 )
 
@@ -78,6 +80,8 @@ def preprocess_function(examples):
     return model_inputs
 
 tokenized_dataset = dataset.map(preprocess_function, batched=True)
+tokenized_dataset = dataset.map(lambda x: {"text": f"{x['instruction']}\n{x['output']}"})
+
 
 # 9. 训练参数
 training_args = TrainingArguments(
@@ -88,19 +92,18 @@ training_args = TrainingArguments(
     learning_rate=2e-4,                  # 学习率
     fp16=True,                           # 混合精度训练
     logging_steps=10,                    # 每10步打印日志
-    report_to="tensorboard",             # 可选：记录到TensorBoard
 )
 
 # 10. 创建Trainer
-trainer = Trainer(
+trainer = SFTTrainer(
     model=model,
     args=training_args,
     train_dataset=tokenized_dataset,
-    data_collator=lambda data: {
-        "input_ids": torch.stack([torch.tensor(item["input_ids"]) for item in data]),
-        "attention_mask": torch.stack([torch.tensor(item["attention_mask"]) for item in data]),
-        "labels": torch.stack([torch.tensor(item["labels"]) for item in data]),
-    },
+    # data_collator=lambda data: {
+    #     "input_ids": torch.stack([torch.tensor(item["input_ids"]) for item in data]),
+    #     "attention_mask": torch.stack([torch.tensor(item["attention_mask"]) for item in data]),
+    #     "labels": torch.stack([torch.tensor(item["labels"]) for item in data]),
+    # },
 )
 
 # 11. 开始训练！

@@ -21,9 +21,19 @@ import os
 # 设置设备（GPU/CPU）
 # device = "cuda" if torch.cuda.is_available() else "cpu"
 
+# 1. 加载模型和分词器
+model_path = "/Users/mac/Documents/DeepSeek-R1-Distill-Qwen-1.5B"
+model_name = "deepseek-ai/deepseek-r1-distill-qwen1.5-1.5B"
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+tokenizer.pad_token = tokenizer.eos_token  # 设置padding token
+
 
 # 7. 加载数据集
 dataset = load_dataset("json", data_files="data.json", split="train")
+result = dataset.map(lambda x: {"text": f"{x['instruction']}\n{x['output']}"})
+for i in result:
+    print(i, 'result')
+
 
 # 8. 数据预处理
 def preprocess_function(examples):
@@ -35,11 +45,10 @@ def preprocess_function(examples):
             examples["output"]
         )
     ]
-    print(inputs, 'inputs')
-    # model_inputs = tokenizer(inputs, max_length=512, truncation=True, padding="max_length")
-    # model_inputs["labels"] = model_inputs["input_ids"].copy()  # 训练时计算loss
+    # print(inputs, 'inputs')
+    model_inputs = tokenizer(inputs, max_length=512, truncation=True, padding="max_length")
+    model_inputs["labels"] = model_inputs["input_ids"].copy()  # 训练时计算loss
     # return model_inputs
 
-for i in dataset:
-    print(i, '12')
+preprocess_function(dataset)
 
