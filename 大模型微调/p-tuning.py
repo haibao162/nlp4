@@ -23,7 +23,7 @@ from trl import SFTTrainer
 # device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # 1. 加载模型和分词器
-model_path = "/Users/mac/Documents/DeepSeek-R1-Distill-Qwen-1.5B"
+model_path = "/Users/nn/Documents/yjx/DeepSeek-R1-Distill-Qwen-1.5B"
 model_name = "deepseek-ai/deepseek-r1-distill-qwen1.5-1.5B"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 tokenizer.pad_token = tokenizer.eos_token  # 设置padding token
@@ -90,7 +90,6 @@ training_args = TrainingArguments(
     gradient_accumulation_steps=4,       # 梯度累积
     num_train_epochs=3,                  # 训练轮次
     learning_rate=2e-4,                  # 学习率
-    fp16=True,                           # 混合精度训练
     logging_steps=10,                    # 每10步打印日志
 )
 
