@@ -1,18 +1,13 @@
 [
     {
-        "instruction": "解释量子计算的基本原理",
-        "input": "",
-        "output": "量子计算是利用量子力学原理（如叠加态和纠缠态）进行信息处理的新型计算模式..."
+        "instruction": "帮我判断输入的句子是否有广告拉人行为，1代表是，0代表否",
+        "input": "加微12313321",
+        "output": ""
     },
     {
         "instruction": "将以下句子翻译成英文",
         "input": "今天天气真好",
         "output": "The weather is nice today."
-    },
-    {
-        "instruction": "生成一段关于人工智能的短文",
-        "input": "字数限制在100字以内",
-        "output": "人工智能是模拟人类智能的计算机系统..."
     },
     {
         "instruction": "上海今天天气怎么样",

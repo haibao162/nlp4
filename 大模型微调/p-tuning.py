@@ -107,7 +107,3 @@ trainer = SFTTrainer(
 
 # 11. 开始训练！
 trainer.train()
-
-# 12. 保存模型（LoRA权重）
-model.save_pretrained("./lora_finetuned_model")
-tokenizer.save_pretrained("./lora_finetuned_model")

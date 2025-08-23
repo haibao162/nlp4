@@ -7,12 +7,12 @@
 # 指令微调
 instruction = [
     {
-        "instruction": "解释量子计算的基本原理",
+        "instruction": "",
         "input": "",  # 可选的上下文或补充信息
         "output": "量子计算是利用量子力学原理..."
     },
     {
-        "instruction": "将以下句子翻译成英文",
+        "instruction": "",
         "input": "今天天气真好",
         "output": "The weather is nice today."
     }
@@ -24,7 +24,7 @@ conversations = [
             {"role": "user", "content": "量子计算是什么？"},
             {"role": "assistant", "content": "量子计算是利用量子力学原理..."}
         ]
-    },
+    },s
     {
         "conversations": [
             {"role": "user", "content": "请用英文说'今天天气真好'"},
