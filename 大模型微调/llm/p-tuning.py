@@ -82,7 +82,7 @@ def preprocess_function(examples):
 tokenized_dataset = dataset.map(preprocess_function, batched=True)
 tokenized_dataset = dataset.map(lambda x: {"text": f"{x['instruction']}\n{x['output']}"})
 
-
+print(tokenized_dataset,'tokenized_dataset')
 # 9. 训练参数
 training_args = TrainingArguments(
     output_dir="./lora_finetuned_model",  # 保存路径
