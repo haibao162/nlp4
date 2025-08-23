@@ -17,10 +17,10 @@ tokenizer = AutoTokenizer.from_pretrained(
 )
 
 conversation = [
-    {"role": "assistant", "content": "帮我分析输入的句子在游戏中是否为广告拉人，例如加v12333代表加微信，是广告拉人，输出概率，并严格按照JSON格式返回结果"},
+    {"role": "assistant", "content": "我是一个游戏客服，帮我分析输入的句子在游戏中是否为广告拉人"},
     {"role": "user", "content": """
-    请回答以下问题，并严格按照以下JSON格式返回，不要添加任何额外内容：{{"answer": "[回答内容]", "prob": "[拉人概率]"}}
-    问题：加v12333
+    需要分析的句子：
+    加v12333
     """},
 ]
 

@@ -1,17 +1,17 @@
 [
     {
-        "instruction": "帮我判断输入的句子是否有广告拉人行为，1代表是，0代表否",
+        "instruction": "我是一个游戏客服，帮我分析输入的句子在游戏中是否为广告拉人",
         "input": "加微12313321",
-        "output": ""
+        "output": "是"
     },
     {
-        "instruction": "将以下句子翻译成英文",
-        "input": "今天天气真好",
-        "output": "The weather is nice today."
+        "instruction": "我是一个游戏客服，帮我分析输入的句子在游戏中是否为广告拉人",
+        "input": "q群12313213123123",
+        "output": "否"
     },
     {
-        "instruction": "上海今天天气怎么样",
-        "input": "字数限制在100字以内",
-        "output": "上海今天天气多云"
+        "instruction": "我是一个游戏客服，帮我分析输入的句子在游戏中是否为广告拉人",
+        "input": "这个boss打不过",
+        "output": "否"
     }
 ]
