@@ -4,6 +4,7 @@ import torch
 model_path = "/Users/nn/Documents/yjx/DeepSeek-R1-Distill-Qwen-1.5B"
 # DeepSeek-R1-Distill-Qwen-1.5B
 # model_name = "Qwen/Qwen-1.5B-Chat"
+
 model = AutoModelForCausalLM.from_pretrained(
     model_path,
     torch_dtype=torch.bfloat16,  # 自动选择精度
